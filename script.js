@@ -101,6 +101,10 @@ const App = () => {
           setActive(e);
           break;
         }
+        if (displayText.match(/[a-zA-Z]/gi)) {
+          setDisplayText("0");
+          break;
+        }
         if (displayText != 0 && displayText.length > 1) {
           setDisplayText(displayText.slice(0, -1));
           setActive(e);
@@ -258,7 +262,18 @@ const App = () => {
       case "×":
         setFlag(false);
 
-        // let lastCharOperation = displayText[displayText.length - 1];
+        if (
+          lastTwoOperators == "/-" ||
+          lastTwoOperators == "*-" ||
+          lastTwoOperators == "+-" ||
+          lastTwoOperators == "-+"
+        ) {
+          let v = displayText.slice(0, -2);
+          setDisplayText(v.concat("*"));
+          setActive(e);
+          return;
+        }
+
         if (
           lastCharOperation == "*" ||
           lastCharOperation == "/" ||
@@ -270,16 +285,7 @@ const App = () => {
           setActive(e);
           return;
         }
-        if (
-          lastTwoOperators == "/-" ||
-          lastTwoOperators == "*-" ||
-          lastTwoOperators == "+-"
-        ) {
-          let v = displayText.slice(0, -2);
-          setDisplayText(v.concat("*"));
-          setActive(e);
-          return;
-        }
+
         setDisplayText(displayText + "*");
         setActive(e);
 
@@ -288,6 +294,18 @@ const App = () => {
         setFlag(false);
 
         if (
+          lastTwoOperators == "/-" ||
+          lastTwoOperators == "*-" ||
+          lastTwoOperators == "+-" ||
+          lastTwoOperators == "-+"
+        ) {
+          let v = displayText.slice(0, -2);
+          setDisplayText(v.concat("/"));
+          setActive(e);
+          return;
+        }
+
+        if (
           lastCharOperation == "*" ||
           lastCharOperation == "/" ||
           lastCharOperation == "-" ||
@@ -298,16 +316,7 @@ const App = () => {
           setActive(e);
           return;
         }
-        if (
-          lastTwoOperators == "/-" ||
-          lastTwoOperators == "*-" ||
-          lastTwoOperators == "+-"
-        ) {
-          let v = displayText.slice(0, -2);
-          setDisplayText(v.concat("/"));
-          setActive(e);
-          return;
-        }
+
         setDisplayText(displayText + e.target.innerText);
         setActive(e);
 
@@ -325,8 +334,12 @@ const App = () => {
         setActive(e);
         break;
       case "=":
-        setDisplayText(eval(displayText) + "");
-        setActive(e);
+        try {
+          setDisplayText(eval(displayText) + "");
+          setActive(e);
+        } catch (error) {
+          setDisplayText("Invalid Input");
+        }
         break;
       default:
         console.log("I am default");
