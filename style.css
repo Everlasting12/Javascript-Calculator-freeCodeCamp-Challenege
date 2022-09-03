@@ -30,12 +30,14 @@ button {
   background-color: #1d1e22;
   color: #fff;
   border: 2px solid #b5b4b1;
+  cursor: pointer;
 }
 
 button.active {
   opacity: 0.9;
   transform: scale(0.98);
 }
+
 
 /* switch */
 /* .switch {

@@ -77,6 +77,7 @@ const numbersAndOperations = [
 const App = () => {
   const [displayText, setDisplayText] = React.useState("0");
   const [isFlag, setFlag] = React.useState(false);
+  const [isEqualToClicked, setIsEqualToClicked] = React.useState(false);
 
   function setActive(e) {
     e.target.classList.add("active");
@@ -115,11 +116,21 @@ const App = () => {
 
         break;
       case "0":
+        if (isEqualToClicked) {
+          setDisplayText("0");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") setDisplayText(displayText);
         else setDisplayText(displayText + e.target.innerText);
         setActive(e);
         break;
       case "1":
+        if (isEqualToClicked) {
+          setDisplayText("1");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -130,6 +141,11 @@ const App = () => {
 
         break;
       case "2":
+        if (isEqualToClicked) {
+          setDisplayText("2");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -140,6 +156,11 @@ const App = () => {
 
         break;
       case "3":
+        if (isEqualToClicked) {
+          setDisplayText("3");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -150,6 +171,11 @@ const App = () => {
 
         break;
       case "4":
+        if (isEqualToClicked) {
+          setDisplayText("4");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -160,6 +186,11 @@ const App = () => {
 
         break;
       case "5":
+        if (isEqualToClicked) {
+          setDisplayText("5");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -170,6 +201,11 @@ const App = () => {
 
         break;
       case "6":
+        if (isEqualToClicked) {
+          setDisplayText("6");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -180,6 +216,11 @@ const App = () => {
 
         break;
       case "7":
+        if (isEqualToClicked) {
+          setDisplayText("7");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -190,6 +231,11 @@ const App = () => {
 
         break;
       case "8":
+        if (isEqualToClicked) {
+          setDisplayText("8");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -200,6 +246,11 @@ const App = () => {
 
         break;
       case "9":
+        if (isEqualToClicked) {
+          setDisplayText("9");
+          setIsEqualToClicked(false);
+          return;
+        }
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
           setActive(e);
@@ -211,6 +262,7 @@ const App = () => {
         break;
       case "+":
         setFlag(false);
+        setIsEqualToClicked(false);
         // let lastCharOperation = displayText[displayText.length - 1];
         if (
           lastCharOperation == "*" ||
@@ -239,6 +291,7 @@ const App = () => {
         break;
       case "-":
         setFlag(false);
+        setIsEqualToClicked(false);
         if (lastCharOperation == "-") {
           setDisplayText(displayText);
           setActive(e);
@@ -261,6 +314,7 @@ const App = () => {
         break;
       case "×":
         setFlag(false);
+        setIsEqualToClicked(false);
 
         if (
           lastTwoOperators == "/-" ||
@@ -292,6 +346,7 @@ const App = () => {
         break;
       case "/":
         setFlag(false);
+        setIsEqualToClicked(false);
 
         if (
           lastTwoOperators == "/-" ||
@@ -335,6 +390,7 @@ const App = () => {
         break;
       case "=":
         try {
+          setIsEqualToClicked(true);
           setDisplayText(eval(displayText) + "");
           setActive(e);
         } catch (error) {
