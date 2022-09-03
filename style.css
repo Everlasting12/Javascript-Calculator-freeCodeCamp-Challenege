@@ -116,7 +116,7 @@ input:checked + .slider:before {
   letter-spacing: 3px;
   padding: 10px;
   min-height: 85px;
-  background-color: rgb(47, 112, 63);
+  background-color: #2A2D37;
   color: rgb(231, 231, 231);
   font-size: 2rem;
   font-weight: bold;
