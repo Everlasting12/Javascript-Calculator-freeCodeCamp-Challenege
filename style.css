@@ -31,11 +31,7 @@ button {
   color: #fff;
   border: 2px solid #b5b4b1;
 }
-button:hover,
-button:focus {
-  cursor: pointer;
-  opacity: 0.7;
-}
+
 button.active {
   opacity: 0.9;
   transform: scale(0.98);

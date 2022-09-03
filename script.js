@@ -77,8 +77,7 @@ const numbersAndOperations = [
 const App = () => {
   const [displayText, setDisplayText] = React.useState("0");
   const [isFlag, setFlag] = React.useState(false);
-  // const [theme, setTheme] = React.useState("light");
-  // const [isChecked, setIsChecked] = React.useState(false);
+
   function setActive(e) {
     e.target.classList.add("active");
     setTimeout(() => {
@@ -99,10 +98,12 @@ const App = () => {
       case "":
         if (displayText == 0) {
           setDisplayText(displayText);
+          setActive(e);
           break;
         }
         if (displayText != 0 && displayText.length > 1) {
           setDisplayText(displayText.slice(0, -1));
+          setActive(e);
           break;
         }
         setDisplayText("0");
@@ -117,6 +118,7 @@ const App = () => {
       case "1":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -126,6 +128,7 @@ const App = () => {
       case "2":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -135,6 +138,7 @@ const App = () => {
       case "3":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -144,6 +148,7 @@ const App = () => {
       case "4":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -153,6 +158,7 @@ const App = () => {
       case "5":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -162,6 +168,7 @@ const App = () => {
       case "6":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -171,6 +178,7 @@ const App = () => {
       case "7":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -180,6 +188,7 @@ const App = () => {
       case "8":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -189,6 +198,7 @@ const App = () => {
       case "9":
         if (displayText == "0") {
           setDisplayText(e.target.innerText);
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -205,6 +215,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -1);
           setDisplayText(v.concat("+"));
+          setActive(e);
           return;
         }
         if (
@@ -214,6 +225,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -2);
           setDisplayText(v.concat("+"));
+          setActive(e);
           return;
         }
         // handleExtraOperator("*", "/", "+", "+");
@@ -225,6 +237,7 @@ const App = () => {
         setFlag(false);
         if (lastCharOperation == "-") {
           setDisplayText(displayText);
+          setActive(e);
           return;
         }
         if (
@@ -234,6 +247,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -2);
           setDisplayText(v.concat("-"));
+          setActive(e);
           return;
         }
 
@@ -253,6 +267,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -1);
           setDisplayText(v.concat("*"));
+          setActive(e);
           return;
         }
         if (
@@ -262,6 +277,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -2);
           setDisplayText(v.concat("*"));
+          setActive(e);
           return;
         }
         setDisplayText(displayText + "*");
@@ -279,6 +295,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -1);
           setDisplayText(v.concat("/"));
+          setActive(e);
           return;
         }
         if (
@@ -288,6 +305,7 @@ const App = () => {
         ) {
           let v = displayText.slice(0, -2);
           setDisplayText(v.concat("/"));
+          setActive(e);
           return;
         }
         setDisplayText(displayText + e.target.innerText);
@@ -298,6 +316,7 @@ const App = () => {
         if (!isFlag) {
           setDisplayText(displayText + e.target.innerText);
           setFlag(true);
+          setActive(e);
           return;
         }
         if (isFlag) {
@@ -315,25 +334,8 @@ const App = () => {
     }
   };
 
-  // const handleOnChange = () => {
-  //   setIsChecked(!isChecked);
-  // };
-  // const themeChange = () => {
-  //   isChecked ? setTheme("dark") : setTheme("light");
-  // };
   return (
     <div id="calculator">
-      {/* <div id="switch">
-        <label class="switch">
-          <input
-            type="checkbox"
-            value={theme}
-            checked={isChecked}
-            onChange={handleOnChange}
-          />
-          <span class="slider round"></span>
-        </label>
-      </div> */}
       <div id="display">{displayText}</div>
       {numbersAndOperations.map((nAndO) => (
         <Button
